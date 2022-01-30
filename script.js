@@ -20,15 +20,15 @@ const gameBlocks = [
   document.getElementById("blockNine"),
 ];
 
-let gameState = ["", "", "", "", "", "", "", "", ""];
+const gameState = ["", "", "", "", "", "", "", "", ""];
 
 for (let i = 0; i < gameBlocks.length; i++) {
   gameBlocks[i].addEventListener("click", () => {
     if (currentPlayer === "x") {
       debugger;
-      addPlayerMark(gameBlocks[i], "&#10008;", gameState[i]);
-      checkWin();
-      if (checkWin() === "win") {
+      addPlayerMark(gameBlocks[i], "&#10008;", i);
+      let xx = checkWin();
+      if (xx === "win") {
         raiseScore(XScores, playerXScores);
         showWinMessage();
         setTimeout(resetBoardGame, 3000);
@@ -36,10 +36,9 @@ for (let i = 0; i < gameBlocks.length; i++) {
       currentPlayer = "o";
       indicateCurrentPlayer(playerO, playerX);
     } else if (currentPlayer === "o") {
-      addPlayerMark(gameBlocks[i], "&#9898;", gameState[i]);
-
-      checkWin();
-      if (checkWin() === "win") {
+      addPlayerMark(gameBlocks[i], "&#9898;", i);
+      let xx = checkWin();
+      if (xx === "win") {
         raiseScore(OScores, playerOScores);
         showWinMessage();
         setTimeout(resetBoardGame, 3000);
@@ -55,9 +54,9 @@ for (let i = 0; i < gameBlocks.length; i++) {
   });
 }
 
-function addPlayerMark(gameBlocks, mark, gameState) {
+function addPlayerMark(gameBlocks, mark, gameStateI) {
   gameBlocks.innerHTML = mark;
-  gameState = currentPlayer;
+  gameState[gameStateI] = currentPlayer;
 }
 function checkWin() {
   if (
@@ -115,10 +114,4 @@ function showWinMessage() {
   setTimeout(function () {
     winMessage.style.display = "none";
   }, 3000);
-}
-function resetBoardGame() {
-  gameBlocks.forEach((block) => {
-    block.innerHTML = "";
-  });
-  gameState = ["", "", "", "", "", "", "", "", ""];
 }
