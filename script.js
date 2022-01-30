@@ -20,7 +20,7 @@ const gameBlocks = [
   document.getElementById("blockNine"),
 ];
 
-const gameState = ["", "", "", "", "", "", "", "", ""];
+let gameState = ["", "", "", "", "", "", "", "", ""];
 
 for (let i = 0; i < gameBlocks.length; i++) {
   gameBlocks[i].addEventListener("click", () => {
