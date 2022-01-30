@@ -22,34 +22,24 @@ const gameBlocks = [
 
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
-function resetBoardGame() {
-  gameBlocks.forEach((block) => {
-    block.innerHTML = "";
-  });
-  gameState = ["", "", "", "", "", "", "", "", ""];
-}
-
 for (let i = 0; i < gameBlocks.length; i++) {
   gameBlocks[i].addEventListener("click", () => {
     if (currentPlayer === "x") {
-      gameBlocks[i].innerHTML = "&#10008;";
-      gameState[i] = "x";
+      addPlayerMark(gameBlocks[i], "&#10008;", gameState[i]);
       checkWin();
       if (checkWin() === "win") {
-        XScores++;
-        playerXScores.innerHTML = XScores;
+        raiseScore(XScores, playerXScores);
         showWinMessage();
         setTimeout(resetBoardGame, 3000);
       }
       currentPlayer = "o";
       indicateCurrentPlayer(playerO, playerX);
     } else if (currentPlayer === "o") {
-      gameBlocks[i].innerHTML = "&#9898;";
-      gameState[i] = "o";
+      addPlayerMark(gameBlocks[i], "&#9898;", gameState[i]);
+
       checkWin();
       if (checkWin() === "win") {
-        OScores++;
-        playerOScores.innerHTML = OScores;
+        raiseScore(OScores, playerOScores);
         showWinMessage();
         setTimeout(resetBoardGame, 3000);
       }
@@ -64,6 +54,10 @@ for (let i = 0; i < gameBlocks.length; i++) {
   });
 }
 
+function addPlayerMark(gameBlocks, mark, gameState) {
+  gameBlocks.innerHTML = mark;
+  gameState = currentPlayer;
+}
 function checkWin() {
   if (
     (gameState[0] === currentPlayer &&
@@ -93,6 +87,18 @@ function checkWin() {
   ) {
     return "win";
   }
+}
+
+function raiseScore(scores, playerScores) {
+  scores++;
+  playerScores.innerHTML = scores;
+}
+
+function resetBoardGame() {
+  gameBlocks.forEach((block) => {
+    block.innerHTML = "";
+  });
+  gameState = ["", "", "", "", "", "", "", "", ""];
 }
 
 function indicateCurrentPlayer(player1, player2) {
