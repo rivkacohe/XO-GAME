@@ -29,7 +29,7 @@ for (let i = 0; i < gameBlocks.length; i++) {
       addPlayerMark(gameBlocks[i], "&#10008;", i);
       let win = checkWin();
       if (win === "win") {
-        raiseScore(XScores, playerXScores);
+        raiseScore(playerXScores);
         showWinMessage();
         setTimeout(resetBoardGame, 3000);
       }
@@ -39,7 +39,7 @@ for (let i = 0; i < gameBlocks.length; i++) {
       addPlayerMark(gameBlocks[i], "&#9898;", i);
       let win = checkWin();
       if (win === "win") {
-        raiseScore(OScores, playerOScores);
+        raiseScore(playerOScores);
         showWinMessage();
         setTimeout(resetBoardGame, 3000);
       }
@@ -89,9 +89,14 @@ function checkWin() {
   }
 }
 
-function raiseScore(scores, playerScores) {
-  scores++;
-  playerScores.innerHTML = scores;
+function raiseScore(playerScores) {
+  if (currentPlayer === "x") {
+    XScores++;
+    playerScores.innerHTML = XScores;
+  } else {
+    OScores++;
+    playerScores.innerHTML = OScores;
+  }
 }
 
 function resetBoardGame() {
