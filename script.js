@@ -27,8 +27,8 @@ for (let i = 0; i < gameBlocks.length; i++) {
     if (currentPlayer === "x") {
       debugger;
       addPlayerMark(gameBlocks[i], "&#10008;", i);
-      let xx = checkWin();
-      if (xx === "win") {
+      let win = checkWin();
+      if (win === "win") {
         raiseScore(XScores, playerXScores);
         showWinMessage();
         setTimeout(resetBoardGame, 3000);
@@ -37,8 +37,8 @@ for (let i = 0; i < gameBlocks.length; i++) {
       indicateCurrentPlayer(playerO, playerX);
     } else if (currentPlayer === "o") {
       addPlayerMark(gameBlocks[i], "&#9898;", i);
-      let xx = checkWin();
-      if (xx === "win") {
+      let win = checkWin();
+      if (win === "win") {
         raiseScore(OScores, playerOScores);
         showWinMessage();
         setTimeout(resetBoardGame, 3000);
