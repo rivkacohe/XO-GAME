@@ -25,7 +25,6 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
 for (let i = 0; i < gameBlocks.length; i++) {
   gameBlocks[i].addEventListener("click", () => {
     if (currentPlayer === "x") {
-      debugger;
       addPlayerMark(gameBlocks[i], "&#10008;", i);
       let win = checkWin();
       if (win === "win") {
