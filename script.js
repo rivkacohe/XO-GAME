@@ -25,6 +25,7 @@ let gameState = ["", "", "", "", "", "", "", "", ""];
 for (let i = 0; i < gameBlocks.length; i++) {
   gameBlocks[i].addEventListener("click", () => {
     if (currentPlayer === "x") {
+      debugger;
       addPlayerMark(gameBlocks[i], "&#10008;", gameState[i]);
       checkWin();
       if (checkWin() === "win") {
@@ -114,4 +115,10 @@ function showWinMessage() {
   setTimeout(function () {
     winMessage.style.display = "none";
   }, 3000);
+}
+function resetBoardGame() {
+  gameBlocks.forEach((block) => {
+    block.innerHTML = "";
+  });
+  gameState = ["", "", "", "", "", "", "", "", ""];
 }
