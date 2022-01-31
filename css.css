@@ -68,6 +68,9 @@ section div {
   justify-content: center;
   align-items: center;
 }
+.preventPointerEvent {
+  pointer-events: none;
+}
 
 @media screen and (max-width: 600px) {
   header {
