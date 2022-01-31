@@ -26,6 +26,7 @@ for (let i = 0; i < gameBlocks.length; i++) {
   gameBlocks[i].addEventListener("click", () => {
     if (currentPlayer === "x") {
       addPlayerMark(gameBlocks[i], "&#10008;", i);
+      gameBlocks[i].classList.add("preventPointerEvent");
       let win = checkWin();
       if (win === "win") {
         raiseScore(playerXScores);
@@ -36,6 +37,7 @@ for (let i = 0; i < gameBlocks.length; i++) {
       indicateCurrentPlayer(playerO, playerX);
     } else if (currentPlayer === "o") {
       addPlayerMark(gameBlocks[i], "&#9898;", i);
+      gameBlocks[i].classList.add("preventPointerEvent");
       let win = checkWin();
       if (win === "win") {
         raiseScore(playerOScores);
@@ -101,6 +103,7 @@ function raiseScore(playerScores) {
 function resetBoardGame() {
   gameBlocks.forEach((block) => {
     block.innerHTML = "";
+    block.classList.remove("preventPointerEvent");
   });
   gameState = ["", "", "", "", "", "", "", "", ""];
 }
