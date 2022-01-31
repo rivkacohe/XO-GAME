@@ -118,6 +118,10 @@ function indicateCurrentPlayer(player1, player2) {
 function showWinMessage() {
   winMessage.innerHTML = `Well done player ${currentPlayer}!`;
   winMessage.style.display = "flex";
+  //prevet pointer event before reset board game
+  gameBlocks.forEach((block) => {
+    block.classList.add("preventPointerEvent");
+  });
   setTimeout(function () {
     winMessage.style.display = "none";
   }, 3000);
